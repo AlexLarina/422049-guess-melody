@@ -7,29 +7,34 @@ const app = document.querySelector(`.app`);
 
 const screensTemplates = document.querySelectorAll(`template`);
 let currentScreenNumber = 0;
+console.log('currentScreenNumber: ' + currentScreenNumber);
 
 const showScreen = (screenIndex) => {
   mainScreen.innerHTML = ``;
   mainScreen.appendChild(screensTemplates[screenIndex].content);
 };
 
-const slideLeft = (screenIndex) => {
-  currentScreenNumber = screenIndex - 1;
+const slideLeft = () => {
+  currentScreenNumber--;
+  console.log('Before condition: currentScreenNumber = ' + currentScreenNumber);
   currentScreenNumber = (currentScreenNumber < 0) ? 0 : currentScreenNumber;
+  console.log('After condition: currentScreenNumber = ' + currentScreenNumber);
   showScreen(currentScreenNumber);
 };
 
-const slideRight = (screenIndex) => {
-  currentScreenNumber = screenIndex + 1;
+const slideRight = () => {
+  currentScreenNumber++;
+  console.log('Before condition: currentScreenNumber = ' + currentScreenNumber);
   currentScreenNumber = (currentScreenNumber > screensTemplates.length - 1) ? screensTemplates.length - 1 : currentScreenNumber;
+  console.log('After condition: currentScreenNumber = ' + currentScreenNumber);
   showScreen(currentScreenNumber);
 };
 
 document.addEventListener(`keydown`, function (evt) {
   if (evt.keyCode === LEFT_ARROW_CODE) {
-    slideLeft(currentScreenNumber);
+    slideLeft();
   } else if (evt.keyCode === RIGHT_ARROW_CODE) {
-    slideRight(currentScreenNumber);
+    slideRight();
   }
 });
 
@@ -59,11 +64,11 @@ const leftArrowButton = document.querySelector(`.leftButton`);
 const rightArrowButton = document.querySelector(`.rightButton`);
 
 leftArrowButton.addEventListener(`click`, () => {
-  slideLeft(currentScreenNumber);
+  slideLeft();
 });
 
 rightArrowButton.addEventListener(`click`, () => {
-  slideRight(currentScreenNumber);
+  slideRight();
 });
 
 showScreen(currentScreenNumber);
