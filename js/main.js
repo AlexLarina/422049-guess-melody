@@ -1,32 +1,39 @@
 'use strict';
 
-const LEFT_ARROW_CODE = 13;
-const RIGHT_ARROW_CODE = 27;
+const LEFT_ARROW_CODE = 13; // enter
+const RIGHT_ARROW_CODE = 27; // esc
 const mainScreen = document.querySelector(`.main`);
 const app = document.querySelector(`.app`);
 
 const screensTemplates = document.querySelectorAll(`template`);
-let currentScreenNumber = 0;
-const showScreen = function (screenIndex) {
+let currentScreenNumber = 4;
+
+const showScreen = (screenIndex) => {
   mainScreen.innerHTML = ``;
   mainScreen.appendChild(screensTemplates[screenIndex].content);
 };
-const slideLeft = function () {
-  currentScreenNumber < 0 ? currentScreenNumber = 0 : currentScreenNumber--;
-  showScreen(currentScreenNumber);
-}
 
-showScreen(currentScreenNumber);
+const slideLeft = (screenIndex) => {
+  screenIndex = (screenIndex < 0) ? 0 : screenIndex;
+  currentScreenNumber = screenIndex;
+  console.log(`currentScreenNumber = ` + currentScreenNumber);
+  console.log(`currentScreenNumber-- = ` + (currentScreenNumber - 1));
+  showScreen(currentScreenNumber--);
+};
+
+const slideRight = (screenIndex) => {
+  /* currentScreenNumber = (currentScreenNumber > screensTemplates.length - 1) ? screensTemplates.length - 1 : currentScreenNumber++; */
+  screenIndex = (screenIndex > screensTemplates.length - 1) ? screensTemplates.length - 1 : screenIndex;
+  currentScreenNumber = screenIndex;
+  console.log(`currentScreenNumber = ` + currentScreenNumber);
+  showScreen(currentScreenNumber++);
+};
 
 document.addEventListener(`keydown`, function (evt) {
   if (evt.keyCode === LEFT_ARROW_CODE) {
-    /* currentScreenNumber < 0 ? currentScreenNumber = 0 : currentScreenNumber--;
-    showScreen(currentScreenNumber); */
     slideLeft();
   } else if (evt.keyCode === RIGHT_ARROW_CODE) {
-    currentScreenNumber > screensTemplates.length - 1 ?
-    currentScreenNumber = screensTemplates.length - 1 : currentScreenNumber++;
-    showScreen(currentScreenNumber);
+    slideRight();
   }
 });
 
@@ -37,7 +44,7 @@ arrowsContainer.style.top = `135px`;
 arrowsContainer.style.left = `50%`;
 arrowsContainer.style.marginLeft = `-56px`;
 
-function createButton(content, extraClass) {
+const createButton = (content, extraClass) => {
   const buttonElement = document.createElement(`button`);
   buttonElement.textContent = content;
   buttonElement.className = `arrows__btn ` + extraClass;
@@ -55,12 +62,13 @@ app.appendChild(arrowsContainer);
 const leftArrowButton = document.querySelector(`.leftButton`);
 const rightArrowButton = document.querySelector(`.rightButton`);
 
-leftArrowButton.addEventListener(`click`, function () {
-  currentScreenNumber < 0 ? currentScreenNumber = 0 : currentScreenNumber--;
-  showScreen(currentScreenNumber);
+leftArrowButton.addEventListener(`click`, () => {
+  slideLeft(currentScreenNumber);
 });
 
-rightArrowButton.addEventListener(`click`, function () {
-  currentScreenNumber > screensTemplates.length - 1 ?
-  currentScreenNumber = screensTemplates.length - 1 : currentScreenNumber++;
-})
+rightArrowButton.addEventListener(`click`, () => {
+  slideRight(currentScreenNumber);
+});
+
+
+showScreen(currentScreenNumber);
