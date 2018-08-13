@@ -6,7 +6,7 @@ const mainScreen = document.querySelector(`.main`);
 const app = document.querySelector(`.app`);
 
 const screensTemplates = document.querySelectorAll(`template`);
-let currentScreenNumber = 4;
+let currentScreenNumber = 0;
 
 const showScreen = (screenIndex) => {
   mainScreen.innerHTML = ``;
@@ -14,26 +14,22 @@ const showScreen = (screenIndex) => {
 };
 
 const slideLeft = (screenIndex) => {
-  screenIndex = (screenIndex < 0) ? 0 : screenIndex;
-  currentScreenNumber = screenIndex;
-  console.log(`currentScreenNumber = ` + currentScreenNumber);
-  console.log(`currentScreenNumber-- = ` + (currentScreenNumber - 1));
-  showScreen(currentScreenNumber--);
+  currentScreenNumber = screenIndex - 1;
+  currentScreenNumber = (currentScreenNumber < 0) ? 0 : currentScreenNumber;
+  showScreen(currentScreenNumber);
 };
 
 const slideRight = (screenIndex) => {
-  /* currentScreenNumber = (currentScreenNumber > screensTemplates.length - 1) ? screensTemplates.length - 1 : currentScreenNumber++; */
-  screenIndex = (screenIndex > screensTemplates.length - 1) ? screensTemplates.length - 1 : screenIndex;
-  currentScreenNumber = screenIndex;
-  console.log(`currentScreenNumber = ` + currentScreenNumber);
-  showScreen(currentScreenNumber++);
+  currentScreenNumber = screenIndex + 1;
+  currentScreenNumber = (currentScreenNumber > screensTemplates.length - 1) ? screensTemplates.length - 1 : currentScreenNumber;
+  showScreen(currentScreenNumber);
 };
 
 document.addEventListener(`keydown`, function (evt) {
   if (evt.keyCode === LEFT_ARROW_CODE) {
-    slideLeft();
+    slideLeft(currentScreenNumber);
   } else if (evt.keyCode === RIGHT_ARROW_CODE) {
-    slideRight();
+    slideRight(currentScreenNumber);
   }
 });
 
@@ -53,7 +49,7 @@ const createButton = (content, extraClass) => {
   buttonElement.style.padding = `5px 20px`;
 
   return buttonElement;
-}
+};
 
 arrowsContainer.appendChild(createButton(`<-`, `leftButton`));
 arrowsContainer.appendChild(createButton(`->`, `rightButton`));
@@ -69,6 +65,5 @@ leftArrowButton.addEventListener(`click`, () => {
 rightArrowButton.addEventListener(`click`, () => {
   slideRight(currentScreenNumber);
 });
-
 
 showScreen(currentScreenNumber);
