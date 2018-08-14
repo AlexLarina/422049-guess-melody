@@ -5,29 +5,27 @@ const RIGHT_ARROW_CODE = 27; // esc
 const mainScreen = document.querySelector(`.main`);
 const app = document.querySelector(`.app`);
 
-const screensTemplates = document.querySelectorAll(`template`);
-let currentScreenNumber = 0;
-console.log('currentScreenNumber: ' + currentScreenNumber);
+// const screensTemplates = document.querySelectorAll(`template`);
+const screensTemplates = Array.from(document.querySelectorAll(`template`)).map((it) => it.content);
 
-const showScreen = (screenIndex) => {
+let currentScreenNumber = 0;
+
+const showScreen = (screen) => {
   mainScreen.innerHTML = ``;
-  mainScreen.appendChild(screensTemplates[screenIndex].content);
+  mainScreen.appendChild(screen.cloneNode(true));
+  // mainScreen.appendChild(screensTemplates[screenIndex].content);
 };
 
 const slideLeft = () => {
   currentScreenNumber--;
-  console.log('Before condition: currentScreenNumber = ' + currentScreenNumber);
   currentScreenNumber = (currentScreenNumber < 0) ? 0 : currentScreenNumber;
-  console.log('After condition: currentScreenNumber = ' + currentScreenNumber);
-  showScreen(currentScreenNumber);
+  showScreen(screensTemplates[currentScreenNumber]);
 };
 
 const slideRight = () => {
   currentScreenNumber++;
-  console.log('Before condition: currentScreenNumber = ' + currentScreenNumber);
   currentScreenNumber = (currentScreenNumber > screensTemplates.length - 1) ? screensTemplates.length - 1 : currentScreenNumber;
-  console.log('After condition: currentScreenNumber = ' + currentScreenNumber);
-  showScreen(currentScreenNumber);
+  showScreen(screensTemplates[currentScreenNumber]);
 };
 
 document.addEventListener(`keydown`, function (evt) {
@@ -71,4 +69,4 @@ rightArrowButton.addEventListener(`click`, () => {
   slideRight();
 });
 
-showScreen(currentScreenNumber);
+showScreen(screensTemplates[currentScreenNumber]);
