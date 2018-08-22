@@ -8,7 +8,7 @@ const mainElement = document.querySelector(`.main`);
 
 export const changeScreen = (element) => {
   mainElement.innerHTML = ``;
-  mainElement.appendChild(element.cloneNode(true));
+  mainElement.appendChild(element);
 };
 
 export const getRandomElement = (array) => {

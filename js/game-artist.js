@@ -70,4 +70,4 @@ artistInputs.forEach(function (item) {
     const resultScreen = getRandomElement([resultSuccessScreen, failTimeScreen, failTriesScreen]);
     changeScreen(resultScreen);
   });
-})
+});
