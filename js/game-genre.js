@@ -92,12 +92,6 @@ gameInputs.forEach(function (input) {
   });
 });
 
-/* gameInputs.forEach(function (input) {
-  if (input.checked) {
-    answerButton.removeAttribute(`disabled`);
-  }
-}); */
-
 answerButton.addEventListener(`click`, () => {
   changeScreen(gameArtistScreen);
 });
