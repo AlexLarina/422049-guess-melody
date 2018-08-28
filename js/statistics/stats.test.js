@@ -1,6 +1,79 @@
 import {assert} from 'chai';
-import {countPoints, showGameResult, LackOfAnswers, SlowAnswers, TimeMissedResult,
-  LifeMissedResult, ThirdPlaceResult, allPlayersResults} from "./stats";
+import {countPoints, showGameResult} from "./stats";
+
+const LackOfAnswers = [
+  {
+    correctAnswer: true,
+    time: 35
+  },
+  {
+    correctAnswer: true,
+    time: 31
+  }
+];
+
+const SlowAnswers = [
+  {
+    correctAnswer: true,
+    time: 35
+  },
+  {
+    correctAnswer: true,
+    time: 31
+  },
+  {
+    correctAnswer: true,
+    time: 45
+  },
+  {
+    correctAnswer: true,
+    time: 44
+  },
+  {
+    correctAnswer: true,
+    time: 43
+  },
+  {
+    correctAnswer: true,
+    time: 42
+  },
+  {
+    correctAnswer: true,
+    time: 41
+  },
+  {
+    correctAnswer: true,
+    time: 40
+  },
+  {
+    correctAnswer: true,
+    time: 39
+  },
+  {
+    correctAnswer: true,
+    time: 38
+  }
+];
+
+const LifeMissedResult = {
+  points: 10,
+  remainNotes: 0, // жизней не осталось
+  remainTime: 3
+};
+
+const TimeMissedResult = {
+  points: 10,
+  remainNotes: 5,
+  remainTime: 0 // времени не осталось
+};
+
+const ThirdPlaceResult = {
+  points: 10,
+  remainNotes: 5,
+  remainTime: 5 // времени не осталось
+};
+
+const allPlayersResults = [4, 6, 8, 11];
 
 describe(`Player's points count`, () => {
   it(`Player answered less than 10 questions`, () => {
