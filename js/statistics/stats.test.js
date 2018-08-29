@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {countPoints, showGameResult} from "./stats";
+import {countPoints, showGameResult, changeLevel, countLives, countTime} from "./stats";
 
 const LackOfAnswers = [
   {
@@ -75,6 +75,12 @@ const ThirdPlaceResult = {
 
 const allPlayersResults = [4, 6, 8, 11];
 
+const INITIAL_GAME = Object.freeze({
+  level: 0,
+  lives: 2,
+  time: 0
+});
+
 describe(`Player's points count`, () => {
   it(`Player answered less than 10 questions`, () => {
     assert.equal(countPoints(LackOfAnswers), -1);
@@ -97,4 +103,56 @@ describe(`Show player's game result`, () => {
     assert.equal(showGameResult(allPlayersResults, ThirdPlaceResult),
         `Вы заняли 3 место из 5 игроков. Это лучше, чем у 60% игроков.`);
   });
+});
+
+describe(`Check level changer`, () => {
+
+  it(`should update level of the game`, () => {
+    assert.equal(changeLevel(INITIAL_GAME, 1).level, 1);
+    assert.equal(changeLevel(INITIAL_GAME, 2).level, 2);
+    assert.equal(changeLevel(INITIAL_GAME, 10).level, 10);
+    assert.equal(changeLevel(INITIAL_GAME, 102).level, 102);
+  });
+
+  it(`should not allow set negative values`, () => {
+    assert.throws(() => changeLevel(INITIAL_GAME, -1).level, /Level should not be negative value/);
+  });
+
+  it(`should not allow set non number value`, () => {
+    assert.throws(() => changeLevel(INITIAL_GAME, []).level, /Level should be of type number/);
+  });
+
+});
+
+describe(`Check lives manager`, () => {
+
+  it(`should update level of the game`, () => {
+    assert.equal(countLives(INITIAL_GAME, 1).lives, 1);
+    assert.equal(countLives(INITIAL_GAME, 102).lives, 102);
+  });
+
+  it(`should not allow set negative values`, () => {
+    assert.throws(() => countLives(INITIAL_GAME, -10).lives, /Number of lives should not be negative value/);
+  });
+
+  it(`should not allow set non number value`, () => {
+    assert.throws(() => countLives(INITIAL_GAME, []).lives, /Number of lives should be of type number/);
+  });
+
+});
+
+describe(`Check time count`, () => {
+
+  it(`should update level of the game`, () => {
+    assert.equal(countTime(INITIAL_GAME, 1).time, 1);
+  });
+
+  it(`should not allow set negative values`, () => {
+    assert.throws(() => countTime(INITIAL_GAME, -10).time, /Time should not be negative value/);
+  });
+
+  it(`should not allow set non number value`, () => {
+    assert.throws(() => countTime(INITIAL_GAME, []).time, /Time should be of type number/);
+  });
+
 });
