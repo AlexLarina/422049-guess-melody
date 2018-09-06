@@ -6,6 +6,12 @@ export const createNodefromTemplate = (stringTemplate) => {
 
 const mainElement = document.querySelector(`.main`);
 
+export const getElementFromTemplate = (template) => {
+  const container = document.createElement(`section`);
+  container.innerHTML = template;
+  return container;
+};
+
 export const changeScreen = (element) => {
   mainElement.innerHTML = ``;
   mainElement.appendChild(element);

@@ -2,11 +2,12 @@ import {getRandomElement, changeScreen, createNodefromTemplate} from './util.js'
 import {resultSuccessScreen} from "./result-success.js";
 import {failTimeScreen} from "./fail-time.js";
 import {failTriesScreen} from "./fail-tries.js";
+import {gameArtistData, gameHeaderData} from "./data";
 
 const gameArtistScreenTemplate = `
 <header class="game__header">
       <a class="game__back" href="#">
-        <span class="visually-hidden">Сыграть ещё раз</span>
+        <span class="visually-hidden">${gameHeaderData.titleHint}</span>
         <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию">
       </a>
 
@@ -15,9 +16,9 @@ const gameArtistScreenTemplate = `
       </svg>
 
       <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-        <span class="timer__mins">05</span>
+        <span class="timer__mins">${gameHeaderData.minutes}</span>
         <span class="timer__dots">:</span>
-        <span class="timer__secs">00</span>
+        <span class="timer__secs">${gameHeaderData.seconds}</span>
       </div>
 
       <div class="game__mistakes">
@@ -28,7 +29,7 @@ const gameArtistScreenTemplate = `
     </header>
 
     <section class="game__screen">
-      <h2 class="game__title">Кто исполняет эту песню?</h2>
+      <h2 class="game__title">${gameArtistData.title}</h2>
       <div class="game__track">
         <button class="track__button track__button--play" type="button"></button>
         <audio></audio>
