@@ -1,10 +1,11 @@
 import {changeScreen, createNodefromTemplate} from './util.js';
 import {gameArtistScreen} from "./game-artist";
+import {gameGenreData, gameHeaderData} from "./data";
 
 const gameGenreScreenTemplate = `
 <header class="game__header">
       <a class="game__back" href="#">
-        <span class="visually-hidden">Сыграть ещё раз</span>
+        <span class="visually-hidden">${gameHeaderData.titleHint}</span>
         <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию">
       </a>
 
@@ -14,9 +15,9 @@ const gameGenreScreenTemplate = `
       </svg>
 
       <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-        <span class="timer__mins">05</span>
+        <span class="timer__mins">${gameHeaderData.minutes}</span>
         <span class="timer__dots">:</span>
-        <span class="timer__secs">00</span>
+        <span class="timer__secs">${gameHeaderData.seconds}</span>
       </div>
 
       <div class="game__mistakes">
@@ -27,7 +28,7 @@ const gameGenreScreenTemplate = `
     </header>
 
     <section class="game__screen">
-      <h2 class="game__title">Выберите инди-рок треки</h2>
+      <h2 class="game__title">${gameGenreData.title}</h2>
       <form class="game__tracks">
         <div class="track">
           <button class="track__button track__button--play" type="button"></button>
