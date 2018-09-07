@@ -1,6 +1,13 @@
-export const createNodefromTemplate = (stringTemplate) => {
+/* export const createNodefromTemplate = (stringTemplate) => {
   const node = document.createElement(`section`);
   node.innerHTML = stringTemplate.trim();
+  return node;
+}; */
+
+export const createNodefromTemplate = (stringTemplate, nodeName, className) => {
+  const node = document.createElement(nodeName);
+  node.innerHTML = stringTemplate.trim();
+  node.classList.add(className);
   return node;
 };
 

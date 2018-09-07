@@ -2,9 +2,11 @@ import {getRandomElement, changeScreen, createNodefromTemplate} from './util.js'
 import {resultSuccessScreen} from "./result-success.js";
 import {failTimeScreen} from "./fail-time.js";
 import {failTriesScreen} from "./fail-tries.js";
-import {gameArtistData, gameHeaderData} from "./data";
+import {levels, gameHeaderData} from "./data";
 
-const gameArtistScreenTemplate = `
+// [...level.answers].forEach( (answer) => console.log(answer.artist));
+
+const gameArtistScreenTemplate = (level) => `
 <header class="game__header">
       <a class="game__back" href="#">
         <span class="visually-hidden">${gameHeaderData.titleHint}</span>
@@ -29,40 +31,24 @@ const gameArtistScreenTemplate = `
     </header>
 
     <section class="game__screen">
-      <h2 class="game__title">${gameArtistData.title}</h2>
+      <h2 class="game__title">${level.question}</h2>
       <div class="game__track">
         <button class="track__button track__button--play" type="button"></button>
         <audio></audio>
       </div>
 
       <form class="game__artist">
-        <div class="artist">
+        ${new Array([...level.answers].length).fill(`<div class="artist">
           <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1">
           <label class="artist__name" for="answer-1">
             <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
             Пелагея
           </label>
-        </div>
-
-        <div class="artist">
-          <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2">
-          <label class="artist__name" for="answer-2">
-            <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
-            Краснознаменная дивизия имени моей бабушки
-          </label>
-        </div>
-
-        <div class="artist">
-          <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3">
-          <label class="artist__name" for="answer-3">
-            <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
-            Lorde
-          </label>
-        </div>
+        </div>`).join(``)}
       </form>
     </section>`;
 
-export const gameArtistScreen = createNodefromTemplate(gameArtistScreenTemplate);
+export const gameArtistScreen = createNodefromTemplate(gameArtistScreenTemplate(levels[1]));
 gameArtistScreen.setAttribute(`class`, `game game--artist`);
 
 const artistInputs = gameArtistScreen.querySelectorAll(`.artist__input`);
