@@ -23,7 +23,7 @@ export const getGameHeader = (data) => {
       ${new Array(data.mistakes).fill(`<div class="wrong"></div>`).join(``)};
       </div>`;
 
-  return createNodefromTemplate(headerTemplate, `header`, `game__header`)
+  return createNodefromTemplate(headerTemplate, `header`, `game__header`);
 };
 
 export const gameArtist = (level) => {

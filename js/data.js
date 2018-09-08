@@ -1,10 +1,3 @@
-export const welcomeData = {
-  gameTitle: `Правила игры`,
-  gameHint: `Правила просты:`,
-  gameRules: [`За 5 минут нужно ответить на все вопросы.`, `Можно допустить 3 ошибки.`],
-  gameGreeting: `Удачи!`
-};
-
 export const gameHeaderData = {
   titleHint: ``,
   minutes: `05`,
@@ -71,23 +64,3 @@ export const levels = [
   }
 ];
 
-export const resultState = {
-  success: {
-    title: `Вы настоящий меломан!`,
-    total: `За 3 минуты и 25секунд вы набрали 12 баллов (8 быстрых), совершив 3 ошибки`,
-    text: `Вы заняли 2 место из 10.Это лучше чем у 80% игроков`,
-    buttonHint: `Сыграть ещё раз`
-  },
-  failTime: {
-    title: `Увы и ах!`,
-    total: `Время вышло! Вы не успели отгадать все мелодии`,
-    text: null,
-    buttonHint: `Попробовать ещё раз`
-  },
-  failTries: {
-    title: `Какая жалость!`,
-    total: `У вас закончились все попытки. Ничего, повезёт в следующий раз!`,
-    text: null,
-    buttonHint: `Попробовать ещё раз`
-  }
-};
