@@ -1,4 +1,6 @@
 import {changeScreen} from "./util.js";
-import {welcomeScreen} from './welcome.js';
+import {renderWelcomeScreen} from './welcome.js';
 
-changeScreen(welcomeScreen);
+// renderWelcomeScreen(welcomeData);
+
+changeScreen(renderWelcomeScreen());
