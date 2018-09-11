@@ -13,7 +13,13 @@ export const createNodefromTemplate = (stringTemplate, nodeName, className) => {
 
 const mainElement = document.querySelector(`.main`);
 
-export const getElementFromTemplate = (template) => {
+/* export const getElementFromTemplate = (template) => {
+  const container = document.createElement(`section`);
+  container.innerHTML = template;
+  return container;
+}; */
+
+export const render = (template) => {
   const container = document.createElement(`section`);
   container.innerHTML = template;
   return container;
