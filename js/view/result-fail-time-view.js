@@ -1,6 +1,6 @@
 import AbstractView from "./abstract-view";
 
-export default class resultFailTimeView extends AbstractView {
+export default class ResultFailTimeView extends AbstractView {
   constructor() {
     super();
 

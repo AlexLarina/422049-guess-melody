@@ -1,6 +1,6 @@
 import AbstractView from "./abstract-view";
 
-export default class resultFailTriesView extends AbstractView {
+export default class ResultFailTriesView extends AbstractView {
   constructor() {
     super();
 

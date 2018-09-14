@@ -1,6 +1,3 @@
-import {changeScreen} from "./util.js";
-import {renderWelcomeScreen} from './welcome.js';
+import Application from './application';
 
-// renderWelcomeScreen(welcomeData);
-
-changeScreen(renderWelcomeScreen());
+Application.showWelcome();
