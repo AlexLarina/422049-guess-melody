@@ -1,28 +1,9 @@
-/* export const createNodefromTemplate = (stringTemplate) => {
-  const node = document.createElement(`section`);
-  node.innerHTML = stringTemplate.trim();
-  return node;
-}; */
-
-export const createNodefromTemplate = (stringTemplate, nodeName, className) => {
-  const node = document.createElement(nodeName);
-  node.innerHTML = stringTemplate.trim();
-  node.classList.add(className);
-  return node;
-};
-
-const mainElement = document.querySelector(`.main`);
-
-/* export const getElementFromTemplate = (template) => {
-  const container = document.createElement(`section`);
-  container.innerHTML = template;
-  return container;
-}; */
+export const mainElement = document.querySelector(`.main`);
 
 export const render = (template) => {
-  const container = document.createElement(`section`);
-  container.innerHTML = template;
-  return container;
+  const container = document.createElement(`div`);
+  container.innerHTML = template.trim();
+  return container.firstChild;
 };
 
 export const changeScreen = (element) => {
