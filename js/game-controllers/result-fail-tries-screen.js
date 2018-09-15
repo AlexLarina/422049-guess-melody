@@ -13,6 +13,6 @@ export default class ResultFailTriesScreen {
   }
 
   bind() {
-    this.screen.onClickReplay = () => Application.showWelcome();
+    this.screen.onReplayClick = () => Application.showWelcome();
   }
 }
